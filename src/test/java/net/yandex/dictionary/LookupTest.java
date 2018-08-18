@@ -1,5 +1,8 @@
 package net.yandex.dictionary;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 
@@ -10,7 +13,9 @@ import static org.hamcrest.CoreMatchers.hasItem;
 
 public class LookupTest extends BaseTest {
 
-    @Test
+    @Test(description = "Lookup Method API Test")
+    @Description("Yandex Dictionary")
+    @Severity(SeverityLevel.CRITICAL)
     public void lookupTest() {
         RestAssured.useRelaxedHTTPSValidation();
         LookupSteps lookup = new LookupSteps();

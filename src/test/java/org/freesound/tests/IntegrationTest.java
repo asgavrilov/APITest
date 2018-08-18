@@ -3,8 +3,11 @@ package org.freesound.tests;
 import com.jayway.jsonpath.JsonPath;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.BeforeEach;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+//import org.junit.jupiter.api.BeforeEach;
+//import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$$;
@@ -22,7 +25,7 @@ public class IntegrationTest {
 
     private static String filename;
 
-    @BeforeEach
+    @BeforeMethod
     public  void beforeTest() throws UnirestException {
        String json = Unirest.get(URL + API_PATH)
                 .queryString("token", API_KEY)

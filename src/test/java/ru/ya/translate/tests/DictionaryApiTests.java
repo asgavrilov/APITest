@@ -1,6 +1,7 @@
 package ru.ya.translate.tests;
 
-import org.junit.jupiter.api.Test;
+
+import org.testng.annotations.Test;
 import ru.ya.translate.DictionaryClient;
 
 import static org.hamcrest.CoreMatchers.equalTo;

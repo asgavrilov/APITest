@@ -3,8 +3,10 @@ package ru.ya.translate.tests;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.BeforeAll;
+//import org.junit.jupiter.api.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import ru.ya.translate.EndPointUrl;
 
 import static io.restassured.RestAssured.given;
@@ -13,10 +15,10 @@ import static org.hamcrest.CoreMatchers.hasItem;
 
 
 public class RestAssuredTest {
-    private static final String API_URL = "https://translate.yandex.net/api/v1.5/tr.json/translate";
-    private static final String API_KEY = "trnsl.1.1.20180711T123306Z.b012f6b5034cc719.aff4999263480fef925a97d8863cbccc7ab40f50";
+    private static final String API_URL = "https://translate.yandex.net/api/v1.5/tr.json/";
+    private static final String API_KEY = "trnsl.1.1.20180818T130230Z.732edf87b11dd383.e5c36503be59705e245e8fb34f3d0f3b8751d024";
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAll() {
         RestAssured.baseURI = "https://translate.yandex.net/api/v1.5/tr.json/";
     }
@@ -34,12 +36,12 @@ public class RestAssuredTest {
     @Test
     public void TC1_dictionaryTest() {
         RestAssured.useRelaxedHTTPSValidation();
-        String additionalPath = getPathFormated(API_KEY, "Привет, мир", "ru-en");
+        String additionalPath = getPathFormated(API_KEY, "Привет,мир", "ru-en");
         given()
-                .header("User-Agent", "Mozilla")
+                .header("User-Agent", "Chrome")
                 .header("JWT", "jwt_token")
                 .when()
-                .get(EndPointUrl.TRANSLATE.addPath(additionalPath))
+                .get(API_URL + EndPointUrl.TRANSLATE.addPath(additionalPath))
                 .then()
                 .statusCode(200)
                 .body("text", hasItem("Hello world"))
